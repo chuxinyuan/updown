@@ -36,14 +36,14 @@ jobs:
       # -------------------------- 
       - name: Push results
         run: |
-          git config --global user.email "chuxinyuan@outlook.com"
-          git config --global user.name "chuxinyuan"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add --all *
           # 检查是否有暂存区的变更
           if git diff --quiet --staged; then
             echo "无文件变更，跳过提交"
           else
-            git commit -m "daily update"
+            git commit -m "update new file"
             git push -q https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:master
           fi
           
