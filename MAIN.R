@@ -5,8 +5,8 @@
 # }
 # download("2024-05-28.tar.gz")
 
-download.file(
-  url = "https://clashnode.github.io/uploads/2024/06/4-20240629.yml",
-  destfile = "clash.yml"
-)
-
+download <- function(name) {
+  url <- "https://github.com/hadley/mastering-shiny/raw/main/neiss/"
+  download.file(paste0(url, name), name, quiet = TRUE)
+}
+download("products.tsv")

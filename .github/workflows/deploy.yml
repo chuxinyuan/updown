@@ -1,0 +1,49 @@
+name: download file
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  download-file:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      # --------------------------
+      # 步骤1: 检出代码仓库
+      # --------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --------------------------
+      # 步骤2: 设置 R 语言环境
+      # --------------------------
+      - name: Set up R environment
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.1'
+    
+      # --------------------------
+      # 步骤3: 执行下载文件
+      # --------------------------      
+      - name: Executive program
+        run: |
+          Rscript MAIN.R
+          
+      # --------------------------
+      # 步骤4: 结果推送回原仓库
+      # -------------------------- 
+      - name: Push results
+        run: |
+          git config --global user.email "chuxinyuan@outlook.com"
+          git config --global user.name "chuxinyuan"
+          git add --all *
+          # 检查是否有暂存区的变更
+          if git diff --quiet --staged; then
+            echo "无文件变更，跳过提交"
+          else
+            git commit -m "daily update"
+            git push -q https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:master
+          fi
+          
