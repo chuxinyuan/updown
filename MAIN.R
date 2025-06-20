@@ -6,7 +6,7 @@
 # download("2024-05-28.tar.gz")
 
 download <- function(name) {
-  url <- "https://github.com/hadley/mastering-shiny/raw/main/neiss/"
+  url <- "https://addons.mozilla.org/firefox/downloads/file/4512210/"
   download.file(paste0(url, name), name, quiet = TRUE)
 }
-download("products.tsv")
+download("immersive_translate-1.18.1.xpi")
