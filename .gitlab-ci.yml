@@ -11,8 +11,7 @@ get_file:
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     
     # 在 rocker 里执行代码
-    # - Rscript MAIN.R 
-    - git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+    - Rscript MAIN.R
 
   after_script:
     # push to origin branch

@@ -29,7 +29,8 @@ jobs:
       # --------------------------      
       - name: Executive program
         run: |
-          Rscript MAIN.R
+          # Rscript MAIN.R
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
           
       # --------------------------
       # 步骤4: 结果推送回原仓库
